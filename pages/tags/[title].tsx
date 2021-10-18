@@ -19,13 +19,13 @@ const Tags = ({ title, posts }: Props) => {
 
       <div className="flex justify-center items-center">
         <p className="bg-gray-100 px-10 py-8 rounded-md my-6">
-          We found <b>{posts.length} Articles</b> for{" "}
-          <span className="capitalize">&quot;{title}&quot;</span>
+          We found <b>{posts.length} Articles</b> for
+          <span className="capitalize"> &quot;{title}&quot;</span>
         </p>
       </div>
 
       <div className="flex items-center justify-center overflow-hidden">
-        <Posts posts={posts} />
+        <Posts tags={[]} posts={posts} />
       </div>
     </>
   );
