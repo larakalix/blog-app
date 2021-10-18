@@ -3,12 +3,15 @@ import Head from "next/head";
 import Posts from "../components/posts/Posts";
 import { Post } from "../interfaces/post";
 import { data } from "../data/data";
+import { request } from "../lib/datocms";
+import { HOME_QUERY } from "../queries/home";
 
 interface Props {
   posts: Post[];
 }
 
 const Home = ({ posts }: Props) => {
+  console.log('Posts', posts)
   return (
     <div className="p-4 md:p-20">
       <Head>
@@ -24,9 +27,14 @@ const Home = ({ posts }: Props) => {
   );
 };
 
-export function getStaticProps() {
-  const posts: Post[] = data;
-  return { props: { posts } }
+export async function getStaticProps() {
+  const response = await request({
+    query: HOME_QUERY,
+    variables: { limit: 10 },
+    preview: false,
+  });
+  let posts: Post[] = response.allPosts;
+  return { props: { posts: posts } };
 }
 
 export default Home;

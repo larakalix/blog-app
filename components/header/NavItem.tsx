@@ -9,7 +9,7 @@ interface Props {
 const NavItem = ({ text, href }: Props) => {
   return (
     <Link href={href}>
-      <a className="flex items-center p-4 rounded-sm transition-colors hover:bg-blue-400 hover:text-white">{ text }</a>
+      <a className="flex items-center p-4 rounded-sm transition-colors hover:bg-pink-500 hover:text-white">{ text }</a>
     </Link>
   );
 };

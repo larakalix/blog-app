@@ -4,6 +4,7 @@ module.exports = {
   images: {
     domains: [
       "static.mbpedia.com",
+      "www.datocms-assets.com",
     ]
   }
 }

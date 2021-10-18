@@ -1,10 +1,12 @@
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { data } from "../../data/data";
+import { request } from "../../lib/datocms";
 import { Post } from "../../interfaces/post";
-import TagBox from "../../components/posts/Tag";
+import TagBadge from "../../components/posts/TagBadge";
 import AuthorAsset from "../../assets/images/author.png";
+import LoaderAsset from "../../assets/images/loader.webp";
+import { ARTICLE_QUERY, HOME_QUERY } from "../../queries/home";
 
 interface Props {
   post: Post;
@@ -19,20 +21,23 @@ const Article = ({ post: { title, tags, thumbnail, author } }: Props) => {
 
       <div className="flex items-center justify-center mt-6">
         <div className="flex-col w-5/6 md:w-3/5">
-          <h1 className="font-normal capitalize text-4xl">{title}</h1>
+          <h1 className="font-normal capitalize text-4xl" >{title}</h1>
 
           <div className="flex space-x-3 my-4">
-            {tags.map(({ title, mark }) => (
-              <TagBox key={title} {...{ title, mark }} />
+            {tags.map(({ id, title, mark }) => (
+              <TagBadge key={id} {...{ id, title, mark }} />
             ))}
           </div>
 
           <div className="relative h-80 shadow-md rounded-md">
             <Image
               className="object-cover filter brightness-90 rounded-md"
-              src={thumbnail}
+              src={thumbnail.url}
               layout="fill"
               alt={title}
+              loading="lazy"
+              placeholder="empty"
+              blurDataURL={LoaderAsset.src}
             />
           </div>
 
@@ -73,10 +78,13 @@ const Article = ({ post: { title, tags, thumbnail, author } }: Props) => {
 };
 
 export async function getStaticPaths() {
-  // Call an external API endpoint to get posts
-  const posts = data;
+  const response = await request({
+    query: HOME_QUERY,
+    variables: { limit: 10 },
+    preview: false,
+  });
+  let posts: Post[] = response.allPosts;
 
-  // Get the paths we want to pre-render based on posts
   const paths = posts.map((post) => ({
     params: { slug: post.slug },
   }));
@@ -85,7 +93,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  const post: Post = data.filter((p) => p.slug === params.slug)[0];
+  const response = await request({
+    query: ARTICLE_QUERY,
+    variables: { slug: params.slug },
+    preview: false,
+  });
+  let post: Post[] = response.post;
   return { props: { post } };
 }
 

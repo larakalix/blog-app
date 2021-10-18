@@ -1,20 +1,24 @@
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
+import { Tag, Thumbnail } from "../../interfaces/post";
+import TagBadge from "./TagBadge";
 import MarkAsset from "./../../assets/images/mark.png";
+import LoaderAsset from "../../assets/images/loader.webp";
 
 interface Props {
   id: string;
   title: string;
   slug: string;
-  thumbnail: string;
+  thumbnail: Thumbnail;
   author: string;
   mark: boolean;
+  tags: Tag[];
 }
 
-const SinglePost = ({ id, title, slug, thumbnail, author, mark }: Props) => {
+const SinglePost = ({ title, slug, thumbnail, author, mark, tags }: Props) => {
   return (
-    <div className="relative my-2 p-2 w-1/2 overflow-hidden sm:w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/5 cursor-pointer hover:brightness-110">
+    <div className="relative my-2 p-2 w-1/2 overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/5 cursor-pointer">
       <Link href={`/article/${encodeURIComponent(slug)}`}>
         <a>
           {mark && (
@@ -25,15 +29,25 @@ const SinglePost = ({ id, title, slug, thumbnail, author, mark }: Props) => {
           <div className="relative h-52 shadow-md rounded-md">
             <Image
               className="object-cover filter brightness-90 rounded-md"
-              src={thumbnail}
+              src={thumbnail.url}
               layout="fill"
               alt={title}
+              loading="lazy"
+              placeholder="empty"
+              blurDataURL={LoaderAsset.src}
             />
           </div>
           <p className="mt-4 text-xs text-gray-500">{author}</p>
           <h1 className="text-gray-800 capitalize font-light text-sm pb-3">
             {title}
           </h1>
+          <div className="flex space-x-3 my-4">
+            <ul className="block">
+              {tags.map(({ id, title, mark }) => (
+                <TagBadge key={id} {...{ id, title, mark }} />
+              ))}
+            </ul>
+          </div>
         </a>
       </Link>
     </div>
