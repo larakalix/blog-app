@@ -11,7 +11,9 @@ interface Props {
   post: Post;
 }
 
-const Article = ({ post: { title, content, tags, thumbnail, author } }: Props) => {
+const Article = ({
+  post: { title, content, tags, thumbnail, author },
+}: Props) => {
   return (
     <>
       <Head>
@@ -20,12 +22,14 @@ const Article = ({ post: { title, content, tags, thumbnail, author } }: Props) =
 
       <div className="flex items-center justify-center mt-6">
         <div className="flex-col w-5/6 md:w-3/5">
-          <h1 className="font-normal capitalize text-4xl" >{title}</h1>
+          <h1 className="font-normal capitalize text-4xl">{title}</h1>
 
           <div className="flex space-x-3 my-4">
-            {tags.map(({ id, title, mark }) => (
-              <TagBadge key={id} {...{ id, title, mark }} />
-            ))}
+            <ul className="block">
+              {tags.map(({ id, title, mark }) => (
+                <TagBadge key={id} {...{ id, title, mark }} />
+              ))}
+            </ul>
           </div>
 
           <div className="relative h-80 shadow-md rounded-md">
@@ -39,8 +43,10 @@ const Article = ({ post: { title, content, tags, thumbnail, author } }: Props) =
           </div>
 
           <div className="flex items-center mt-12 content">
-            <p className="font-extralight text-base" dangerouslySetInnerHTML={{ __html: content }}>
-            </p>
+            <p
+              className="font-extralight text-base"
+              dangerouslySetInnerHTML={{ __html: content }}
+            ></p>
           </div>
 
           <div className="flex flex-col mt-8 border-t pt-4 pb-10">
@@ -50,8 +56,10 @@ const Article = ({ post: { title, content, tags, thumbnail, author } }: Props) =
                 <Image src={AuthorAsset} width={90} height={90} alt="Mark" />
               </div>
               <div className="flex flex-col">
-              <p className="mb-1">{author}</p>
-              <p className="text-xs">Cupiditate, nulla non officia cumque repudiandae quia.</p>
+                <p className="mb-1">{author}</p>
+                <p className="text-xs">
+                  Cupiditate, nulla non officia cumque repudiandae quia.
+                </p>
               </div>
             </div>
           </div>
