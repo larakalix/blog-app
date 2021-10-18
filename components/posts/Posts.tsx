@@ -7,7 +7,7 @@ interface Props {
 
 const Posts = ({ posts }: Props) => {
   return (
-    <div className="flex flex-wrap -mx-1 overflow-hidden">
+    <div className="flex flex-wrap justify-center -mx-1 overflow-hidden">
       {posts.map(({ id, title, slug, thumbnail, author, mark, tags }) => (
         <SinglePost
           key={id}

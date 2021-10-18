@@ -17,7 +17,7 @@ interface Props {
 
 const SinglePost = ({ title, slug, thumbnail, author, mark, tags }: Props) => {
   return (
-    <div className="relative my-2 p-2 w-1/2 overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/5 cursor-pointer">
+    <div className="relative my-2 p-2 w-1/2 min-w-[20rem] justify-center overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/5 cursor-pointer">
       <Link href={`/article/${encodeURIComponent(slug)}`}>
         <a>
           {mark && (
@@ -27,7 +27,7 @@ const SinglePost = ({ title, slug, thumbnail, author, mark, tags }: Props) => {
           )}
           <div className="relative h-52 shadow-md rounded-md">
             <Image
-              className="object-cover filter brightness-90 rounded-md"
+              className="object-cover filter brightness-110 rounded-md"
               src={thumbnail.url}
               layout="fill"
               alt={title}

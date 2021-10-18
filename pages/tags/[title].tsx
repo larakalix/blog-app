@@ -1,9 +1,9 @@
 import React from "react";
 import Head from "next/head";
-import { Post } from "../../interfaces/post";
+import { Post, Tag } from "../../interfaces/post";
 import Posts from "../../components/posts/Posts";
 import { request } from "../../lib/datocms";
-import { HOME_QUERY, TAGS_QUERY } from "../../queries/home";
+import { HOME_QUERY, ONE_TAG, TAGS_QUERY, TAG_POSTS_QUERY } from "../../queries/queries";
 
 interface Props {
   title: string;
@@ -47,14 +47,20 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-//   const response = await request({
-//     query: HOME_QUERY,
-//     variables: { title: params.title },
-//     preview: false,
-//   });
-  // let post: Post[] = response.allPosts[0];
-  let posts: Post[] = [];
-  return { props: { title: params.title, posts: [] } };
+  const tag_response = await request({
+    query: ONE_TAG,
+    variables: { title: params.title },
+    preview: false,
+  });
+  const { id }: Tag = tag_response.tag;
+
+  const response = await request({
+    query: TAG_POSTS_QUERY,
+    variables: { tagId: id },
+    preview: false,
+  });
+  let posts: Post[] = response.allPosts;
+  return { props: { title: params.title, posts } };
 }
 
 export default Tags;

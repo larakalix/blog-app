@@ -3,7 +3,7 @@ import Head from "next/head";
 import Posts from "../components/posts/Posts";
 import { Post } from "../interfaces/post";
 import { request } from "../lib/datocms";
-import { HOME_QUERY } from "../queries/home";
+import { HOME_QUERY } from "../queries/queries";
 
 interface Props {
   posts: Post[];

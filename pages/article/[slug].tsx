@@ -5,13 +5,13 @@ import { request } from "../../lib/datocms";
 import { Post } from "../../interfaces/post";
 import TagBadge from "../../components/posts/TagBadge";
 import AuthorAsset from "../../assets/images/author.png";
-import { ARTICLE_QUERY, HOME_QUERY } from "../../queries/home";
+import { ARTICLE_QUERY, HOME_QUERY } from "../../queries/queries";
 
 interface Props {
   post: Post;
 }
 
-const Article = ({ post: { title, tags, thumbnail, author } }: Props) => {
+const Article = ({ post: { title, content, tags, thumbnail, author } }: Props) => {
   return (
     <>
       <Head>
@@ -30,7 +30,7 @@ const Article = ({ post: { title, tags, thumbnail, author } }: Props) => {
 
           <div className="relative h-80 shadow-md rounded-md">
             <Image
-              className="object-cover filter brightness-90 rounded-md"
+              className="object-cover filter brightness-110 rounded-md"
               src={thumbnail.url}
               layout="fill"
               alt={title}
@@ -38,21 +38,8 @@ const Article = ({ post: { title, tags, thumbnail, author } }: Props) => {
             />
           </div>
 
-          <div className="flex items-center mt-12">
-            <p className="font-extralight text-base">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde sed
-              officia, omnis suscipit repellat veritatis, tenetur blanditiis
-              assumenda, excepturi iusto sit reprehenderit enim tempora. Eum
-              velit vitae ratione nobis officiis totam tenetur. Iure distinctio
-              necessitatibus voluptas autem fugit enim corrupti, rem ipsum harum
-              inventore et aliquid! Blanditiis, ipsam. Laborum praesentium
-              voluptatibus, expedita culpa delectus nobis mollitia vero, fugiat
-              voluptatum dolor incidunt veritatis, placeat ut quos corrupti
-              numquam eligendi accusantium ipsam quisquam sequi error porro ex
-              obcaecati doloribus. Cupiditate, nulla non officia cumque
-              repudiandae quia. Deserunt similique incidunt quam iste? Quos,
-              recusandae ducimus dolorum eos veniam molestiae magnam quam
-              voluptas enim?
+          <div className="flex items-center mt-12 content">
+            <p className="font-extralight text-base" dangerouslySetInnerHTML={{ __html: content }}>
             </p>
           </div>
 
