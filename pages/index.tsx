@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import Posts from "../components/posts/Posts";
 import { Post } from "../interfaces/post";
-import { data } from "../data/data";
 import { request } from "../lib/datocms";
 import { HOME_QUERY } from "../queries/home";
 

@@ -5,7 +5,6 @@ import { request } from "../../lib/datocms";
 import { Post } from "../../interfaces/post";
 import TagBadge from "../../components/posts/TagBadge";
 import AuthorAsset from "../../assets/images/author.png";
-import LoaderAsset from "../../assets/images/loader.webp";
 import { ARTICLE_QUERY, HOME_QUERY } from "../../queries/home";
 
 interface Props {
@@ -36,8 +35,6 @@ const Article = ({ post: { title, tags, thumbnail, author } }: Props) => {
               layout="fill"
               alt={title}
               loading="lazy"
-              placeholder="empty"
-              blurDataURL={LoaderAsset.src}
             />
           </div>
 

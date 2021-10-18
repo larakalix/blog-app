@@ -4,7 +4,6 @@ import React from "react";
 import { Tag, Thumbnail } from "../../interfaces/post";
 import TagBadge from "./TagBadge";
 import MarkAsset from "./../../assets/images/mark.png";
-import LoaderAsset from "../../assets/images/loader.webp";
 
 interface Props {
   id: string;
@@ -33,8 +32,6 @@ const SinglePost = ({ title, slug, thumbnail, author, mark, tags }: Props) => {
               layout="fill"
               alt={title}
               loading="lazy"
-              placeholder="empty"
-              blurDataURL={LoaderAsset.src}
             />
           </div>
           <p className="mt-4 text-xs text-gray-500">{author}</p>
