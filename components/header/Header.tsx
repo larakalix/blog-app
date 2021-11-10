@@ -1,7 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import NavItem from "./NavItem";
-import { useWindowPosition } from "../../hooks/layout/useWindowPosition";
+import { useWindowPosition } from "@/hooks/layout/useWindowPosition";
 
 const Header = () => {
   const scrollPosition = useWindowPosition({ validateFrom: 40 });

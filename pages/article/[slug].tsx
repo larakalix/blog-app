@@ -1,11 +1,11 @@
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
+import { Post } from "@/interfaces/post";
+import TagBadge from "@/components/posts/TagBadge";
 import { request } from "../../lib/datocms";
-import { Post } from "../../interfaces/post";
-import TagBadge from "../../components/posts/TagBadge";
-import AuthorAsset from "../../assets/images/author.png";
-import { ARTICLE_QUERY, HOME_QUERY } from "../../queries/queries";
+import { ARTICLE_QUERY, HOME_QUERY } from "@/queries/queries";
+import AuthorAsset from "./../../assets/images/author.png";
 
 interface Props {
   post: Post;

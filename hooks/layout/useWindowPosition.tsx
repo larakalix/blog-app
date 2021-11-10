@@ -4,7 +4,7 @@ interface Props {
   validateFrom: number;
 }
 
-const canUseDOM = typeof window !== 'undefined';
+const canUseDOM = typeof window !== "undefined";
 const useIsomorphicLayoutEffect = canUseDOM ? useLayoutEffect : useEffect;
 
 export const useWindowPosition = ({ validateFrom }: Props) => {

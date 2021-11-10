@@ -1,9 +1,9 @@
 import React from "react";
 import Head from "next/head";
-import Posts from "../components/posts/Posts";
-import { Post, Tag } from "../interfaces/post";
+import { Post, Tag } from "@/interfaces/post";
+import Posts from "@/components/posts/Posts";
 import { request } from "../lib/datocms";
-import { HOME_QUERY, TAGS_QUERY } from "../queries/queries";
+import { HOME_QUERY, TAGS_QUERY } from "@/queries/queries";
 
 interface Props {
   tags: Tag[];
