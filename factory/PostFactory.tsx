@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import dynamic from 'next/dynamic';
 import { PostType } from "@/interfaces/post";
 import UndefinedPost from "@/components/posts/types/UndefinedPost";
@@ -6,7 +6,6 @@ import UndefinedPost from "@/components/posts/types/UndefinedPost";
 interface Props {
   type: PostType;
   props: any;
-  node: ReactNode
 }
 
 const _components: any = {
